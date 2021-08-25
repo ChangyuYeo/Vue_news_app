@@ -1,24 +1,9 @@
-# vue_news_app
+# Hacker News App
+[Hacker News API](https://github.com/HackerNews/API) 를 이용한 간단한 뉴스 사이트
 
-## Project setup
-```
-npm install
-```
+[Demo version](https://quizzical-golick-941589.netlify.app/) 데모버전
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- vue3
+- vuex
+- bootstrap
+- scss
