@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 export default createRouter({
-	history: createWebHistory(),
+	history: createWebHashHistory(),
 	routes: [
 		{
 			path: '/',
@@ -9,23 +9,26 @@ export default createRouter({
 		},
 		{
 			path: '/news',
-			component: () => import('@/views/NewsView.vue')
+			name: 'news',
+			component: () => import('@/views/NewsView')
 		},
 		{
 			path: '/ask',
-			component: () => import('@/views/AskView.vue')
+			name: 'ask',
+			component: () => import('@/views/AskView')
 		},
 		{
 			path: '/jobs',
-			component: () => import('@/views/JobsView.vue')
+			name: 'jobs',
+			component: () => import('@/views/JobsView')
 		},
 		{
-			path: '/item',
-			component: () => import('@/views/ItemView.vue')
+			path: '/user/:id',
+			component: () => import('@/views/UserView')
 		},
 		{
-			path: '/user',
-			component: () => import('@/views/UserView.vue')
+			path: '/item/:id',
+			component: () => import('@/views/ItemView')
 		}
 	]
 })

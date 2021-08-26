@@ -1,6 +1,10 @@
 <template>
 	<ToolBar />
-	<RouterView />
+	<RouterView v-slot="{ Component }">
+		<transition name="fade">
+			<component :is="Component" />
+		</transition>
+	</RouterView>
 </template>
 
 <script>
@@ -14,7 +18,18 @@ export default {
 </script>
 
 <style lang="scss">
-p {
-	color: $primary;
+body {
+	font-family: 'Roboto', sans-serif;
+	color: $gray-800;
+	// 라우터 트렌지션
+	.fade-enter-active,
+	.fade-leave-active {
+		transition: opacity 0.5s ease;
+	}
+
+	.fade-enter-from,
+	.fade-leave-to {
+		opacity: 0;
+	}
 }
 </style>
