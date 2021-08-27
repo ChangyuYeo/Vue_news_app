@@ -7,29 +7,31 @@
 				</div>
 				<div>
 					<p class="news-title">
-						<!-- 페이지에 따른 분기처리 -->
+						<!-- 라우터 페이지에 따른 분기처리 -->
 						<template v-if="item.domain">
 							<a :href="item.url">
 								{{ item.title }}
 							</a>
 						</template>
+						<!-- Ask page -->
 						<template v-else>
-							<RouterLink :to="`item/${item.id}`">
+							<RouterLink :to="`/item/${item.id}`">
 								{{ item.title }}
 							</RouterLink>
 						</template>
 					</p>
 					<small class="news-link">
 						{{ item.time_ago }} by
-						<template v-if="item.user">
-							<RouterLink :to="`/user/${item.user}`" class="news-link">
-								{{ item.user }}
-							</RouterLink>
-						</template>
-						<template v-else>
+						<!-- Jobs page는 domain 출력 -->
+						<template v-if="!item.user">
 							<a :href="item.url">
 								{{ item.domain }}
 							</a>
+						</template>
+						<template v-else>
+							<RouterLink :to="`/user/${item.user}`" class="news-link">
+								{{ item.user }}
+							</RouterLink>
 						</template>
 					</small>
 				</div>

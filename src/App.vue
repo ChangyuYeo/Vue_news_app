@@ -5,14 +5,22 @@
 			<component :is="Component" />
 		</transition>
 	</RouterView>
+	<Spinner v-if="loading" />
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import ToolBar from '@/components/ToolBar'
+import Spinner from '@/components/Spinner'
 
 export default {
 	components: {
-		ToolBar
+		ToolBar,
+		Spinner
+	},
+
+	computed: {
+		...mapState(['loading'])
 	}
 }
 </script>

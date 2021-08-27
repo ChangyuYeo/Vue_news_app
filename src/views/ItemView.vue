@@ -1,16 +1,13 @@
 <template>
 	<section>
-		<div class="user-container">
-			<div>
-				<i class="bi bi-person-circle"></i>
-			</div>
-			<div class="user-description">
+		<UserProfile :user="item">
+			<template #username>
 				<RouterLink :to="`/user/${item.user}`">{{ item.user }}</RouterLink>
-				<div class="user-time">
-					{{ item.time_ago }}
-				</div>
-			</div>
-		</div>
+			</template>
+			<template #time>Posted {{ item.time_ago }}, </template>
+		</UserProfile>
+	</section>
+	<section>
 		<h2>{{ item.title }}</h2>
 	</section>
 	<section>
@@ -19,9 +16,14 @@
 </template>
 
 <script>
+import UserProfile from '@/components/UserProfile'
 import { mapState } from 'vuex'
 
 export default {
+	components: {
+		UserProfile
+	},
+
 	computed: {
 		...mapState(['item'])
 	},
