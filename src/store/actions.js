@@ -7,29 +7,64 @@ import {
 } from '@/api/index'
 
 export default {
-	FETCH_NEWS({ commit }) {
-		fetchNewList()
-			.then(({ data }) => commit('SET_NEWS', data))
-			.catch(err => console.error(err))
+	async FETCH_NEWS({ commit }) {
+		commit('SET_LOADING', true)
+		try {
+			const response = await fetchNewList()
+			commit('SET_NEWS', response.data)
+			return response
+		} catch (error) {
+			console.error(`error 발생: ${error}`)
+		} finally {
+			commit('SET_LOADING', false)
+		}
 	},
-	FETCH_ASK({ commit }) {
-		fetchAskList()
-			.then(({ data }) => commit('SET_ASK', data))
-			.catch(err => console.error(err))
+	async FETCH_ASK({ commit }) {
+		commit('SET_LOADING', true)
+		try {
+			const response = await fetchAskList()
+			commit('SET_ASK', response.data)
+			return response
+		} catch (error) {
+			console.error(`error 발생: ${error}`)
+		} finally {
+			commit('SET_LOADING', false)
+		}
 	},
-	FETCH_JOBS({ commit }) {
-		fetchJobsList()
-			.then(({ data }) => commit('SET_JOBS', data))
-			.catch(err => console.error(err))
+	async FETCH_JOBS({ commit }) {
+		commit('SET_LOADING', true)
+		try {
+			const response = await fetchJobsList()
+			commit('SET_JOBS', response.data)
+			return response
+		} catch (error) {
+			console.error(`error 발생: ${error}`)
+		} finally {
+			commit('SET_LOADING', false)
+		}
 	},
-	FETCH_USER({ commit }, id) {
-		fetchUserInfo(id)
-			.then(({ data }) => commit('SET_USER', data))
-			.catch(err => console.error(err))
+	async FETCH_USER({ commit }, id) {
+		commit('SET_LOADING', true)
+		try {
+			const response = await fetchUserInfo(id)
+			commit('SET_USER', response.data)
+			return response
+		} catch (error) {
+			console.error(`error 발생: ${error}`)
+		} finally {
+			commit('SET_LOADING', false)
+		}
 	},
-	FETCH_ITEM({ commit }, id) {
-		fetchItemInfo(id)
-			.then(({ data }) => commit('SET_ITEM', data))
-			.catch(err => console.error(err))
+	async FETCH_ITEM({ commit }, id) {
+		commit('SET_LOADING', true)
+		try {
+			const response = await fetchItemInfo(id)
+			commit('SET_ITEM', response.data)
+			return response
+		} catch (error) {
+			console.error(`error 발생: ${error}`)
+		} finally {
+			commit('SET_LOADING', false)
+		}
 	}
 }
