@@ -19,11 +19,7 @@
 </template>
 
 <script>
-export default {
-	props: {
-		item: Object
-	}
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>
