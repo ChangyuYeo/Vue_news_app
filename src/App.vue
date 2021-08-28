@@ -8,12 +8,13 @@
 	<Spinner v-if="loading" />
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import { mapState } from 'vuex'
-import ToolBar from '@/components/ToolBar'
-import Spinner from '@/components/Spinner'
+import ToolBar from '@/components/ToolBar.vue'
+import Spinner from '@/components/Spinner.vue'
 
-export default {
+export default defineComponent({
 	components: {
 		ToolBar,
 		Spinner
@@ -22,7 +23,7 @@ export default {
 	computed: {
 		...mapState(['loading'])
 	}
-}
+})
 </script>
 
 <style lang="scss">

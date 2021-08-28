@@ -12,28 +12,36 @@
 							<a :href="item.url">
 								{{ item.title }}
 							</a>
+							<br />
+							<small class="news-link">
+								{{ item.time_ago }} by
+								<!-- Jobs page는 domain 출력 -->
+								<template v-if="!item.user">
+									<a :href="item.url">
+										{{ item.domain }}
+									</a>
+								</template>
+								<template v-else>
+									<RouterLink :to="`/user/${item.user}`" class="news-link">
+										{{ item.user }}
+									</RouterLink>
+								</template>
+							</small>
 						</template>
 						<!-- Ask page -->
 						<template v-else>
 							<RouterLink :to="`/item/${item.id}`">
 								{{ item.title }}
 							</RouterLink>
+							<br />
+							<small class="news-link">
+								{{ item.time_ago }} by
+								<RouterLink :to="`/user/${item.user}`" class="news-link">
+									{{ item.user }}
+								</RouterLink>
+							</small>
 						</template>
 					</p>
-					<small class="news-link">
-						{{ item.time_ago }} by
-						<!-- Jobs page는 domain 출력 -->
-						<template v-if="!item.user">
-							<a :href="item.url">
-								{{ item.domain }}
-							</a>
-						</template>
-						<template v-else>
-							<RouterLink :to="`/user/${item.user}`" class="news-link">
-								{{ item.user }}
-							</RouterLink>
-						</template>
-					</small>
 				</div>
 			</li>
 		</ul>

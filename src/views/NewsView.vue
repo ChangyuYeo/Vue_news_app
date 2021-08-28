@@ -4,12 +4,13 @@
 	</div>
 </template>
 
-<script>
-import ListItem from '@/components/ListItem'
+<script lang="ts">
+import { defineComponent } from 'vue'
+import ListItem from '@/components/ListItem.vue'
 
-export default {
+export default defineComponent({
 	components: {
 		ListItem
 	}
-}
+})
 </script>
