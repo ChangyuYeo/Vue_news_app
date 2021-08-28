@@ -48,22 +48,20 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
+import { NewsItem } from '@/api/interface'
+import { defineComponent } from 'vue'
 import { mapState } from 'vuex'
 
-export default {
+export default defineComponent({
 	computed: {
 		...mapState(['news', 'ask', 'jobs']),
-		listItems() {
+		listItems(): NewsItem {
 			// route.name에 따른 listItems 분기처리
 			const name = this.$route.name
-			if (name === 'news') {
-				return this.news
-			} else if (name === 'ask') {
-				return this.ask
-			} else {
-				return this.jobs
-			}
+			if (name === 'news') return this.news
+			else if (name === 'ask') return this.ask
+			else return this.jobs
 		}
 	},
 
@@ -72,9 +70,9 @@ export default {
 		const name = this.$route.name
 		if (name == 'news') this.$store.dispatch('FETCH_NEWS')
 		else if (name == 'ask') this.$store.dispatch('FETCH_ASK')
-		else if (name == 'jobs') this.$store.dispatch('FETCH_JOBS')
+		else this.$store.dispatch('FETCH_JOBS')
 	}
-}
+})
 </script>
 
 <style lang="scss" scoped>

@@ -8,11 +8,12 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import { mapState } from 'vuex'
-import UserProfile from '@/components/UserProfile'
+import UserProfile from '@/components/UserProfile.vue'
 
-export default {
+export default defineComponent({
 	components: {
 		UserProfile
 	},
@@ -25,7 +26,5 @@ export default {
 	computed: {
 		...mapState(['user'])
 	}
-}
+})
 </script>
-
-<style lang="scss" scoped></style>

@@ -3,11 +3,18 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: ["plugin:vue/vue3-essential", "eslint:recommended", "@vue/prettier"],
+  extends: [
+    "plugin:vue/vue3-essential",
+    "eslint:recommended",
+    "@vue/typescript/recommended",
+    "@vue/prettier",
+    "@vue/prettier/@typescript-eslint",
+  ],
   parserOptions: {
-    parser: "babel-eslint",
+    ecmaVersion: 2020,
   },
   rules: {
+    '@typescript-eslint/explicit-module-boundary-types': "off",
     'prettier/prettier': [
       'error',
       {
@@ -21,6 +28,6 @@ module.exports = {
         printWidth: 80, // 텍스트 길이 지정
         useTabs: true, // 탭 사용 여부
       },
-    ]
+    ],
   },
 };

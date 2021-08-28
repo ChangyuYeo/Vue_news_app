@@ -5,6 +5,7 @@ const config = {
 	baseUrl: process.env.VUE_APP_API_URL
 }
 
+// AxiosPromise Type
 function fetchNewList(): AxiosPromise<NewsItem[]> {
 	return axios.get(`${config.baseUrl}news/1.json`)
 }

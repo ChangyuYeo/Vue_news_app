@@ -1,35 +1,38 @@
 <template>
-	<section class="header-container">
-		<UserProfile>
-			<template #username>
-				<RouterLink :to="`/user/${item.user}`">{{ item.user }}</RouterLink>
-			</template>
-			<template #time>Posted {{ item.time_ago }}, </template>
-		</UserProfile>
-	</section>
-	<section>
-		<h2>{{ item.title }}</h2>
-		<div v-html="item.content" class="content"></div>
-	</section>
-	<section>
-		<h3>Comments</h3>
-		<div v-for="item in item.comments" :key="item.id" class="content">
+	<div>
+		<section class="header-container">
 			<UserProfile>
 				<template #username>
 					<RouterLink :to="`/user/${item.user}`">{{ item.user }}</RouterLink>
 				</template>
 				<template #time>Posted {{ item.time_ago }}, </template>
 			</UserProfile>
-			<div v-html="item.content"></div>
-		</div>
-	</section>
+		</section>
+		<section>
+			<h2>{{ item.title }}</h2>
+			<div v-html="item.content" class="content"></div>
+		</section>
+		<section>
+			<h3>Comments</h3>
+			<div v-for="item in item.comments" :key="item.id" class="content">
+				<UserProfile>
+					<template #username>
+						<RouterLink :to="`/user/${item.user}`">{{ item.user }}</RouterLink>
+					</template>
+					<template #time>Posted {{ item.time_ago }}, </template>
+				</UserProfile>
+				<div v-html="item.content"></div>
+			</div>
+		</section>
+	</div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import { mapState } from 'vuex'
-import UserProfile from '@/components/UserProfile'
+import UserProfile from '@/components/UserProfile.vue'
 
-export default {
+export default defineComponent({
 	components: {
 		UserProfile
 	},
@@ -42,7 +45,7 @@ export default {
 		const id = this.$route.params.id
 		this.$store.dispatch('FETCH_ITEM', id)
 	}
-}
+})
 </script>
 
 <style lang="scss" scoped>

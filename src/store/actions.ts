@@ -1,13 +1,15 @@
+import { ActionContext } from 'vuex'
 import {
 	fetchNewList,
 	fetchAskList,
 	fetchJobsList,
 	fetchUserInfo,
 	fetchItemInfo
-} from '@/api/index'
+} from '../api'
+import { RootState } from './state'
 
 export default {
-	async FETCH_NEWS({ commit }) {
+	async FETCH_NEWS({ commit }: ActionContext<RootState, RootState>) {
 		commit('SET_LOADING', true)
 		try {
 			const response = await fetchNewList()
@@ -19,7 +21,7 @@ export default {
 			commit('SET_LOADING', false)
 		}
 	},
-	async FETCH_ASK({ commit }) {
+	async FETCH_ASK({ commit }: ActionContext<RootState, RootState>) {
 		commit('SET_LOADING', true)
 		try {
 			const response = await fetchAskList()
@@ -31,7 +33,7 @@ export default {
 			commit('SET_LOADING', false)
 		}
 	},
-	async FETCH_JOBS({ commit }) {
+	async FETCH_JOBS({ commit }: ActionContext<RootState, RootState>) {
 		commit('SET_LOADING', true)
 		try {
 			const response = await fetchJobsList()
@@ -43,7 +45,10 @@ export default {
 			commit('SET_LOADING', false)
 		}
 	},
-	async FETCH_USER({ commit }, id) {
+	async FETCH_USER(
+		{ commit }: ActionContext<RootState, RootState>,
+		id: string | string[]
+	) {
 		commit('SET_LOADING', true)
 		try {
 			const response = await fetchUserInfo(id)
@@ -55,7 +60,10 @@ export default {
 			commit('SET_LOADING', false)
 		}
 	},
-	async FETCH_ITEM({ commit }, id) {
+	async FETCH_ITEM(
+		{ commit }: ActionContext<RootState, RootState>,
+		id: string | string[]
+	) {
 		commit('SET_LOADING', true)
 		try {
 			const response = await fetchItemInfo(id)
