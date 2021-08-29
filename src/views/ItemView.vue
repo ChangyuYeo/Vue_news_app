@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<section class="header-container">
+	<main>
+		<section>
 			<UserProfile>
 				<template #username>
 					<RouterLink :to="`/user/${item.user}`">{{ item.user }}</RouterLink>
@@ -10,21 +10,25 @@
 		</section>
 		<section>
 			<h2>{{ item.title }}</h2>
-			<div v-html="item.content" class="content"></div>
+			<div v-html="item.content" class="card content"></div>
 		</section>
 		<section>
 			<h3>Comments</h3>
-			<div v-for="item in item.comments" :key="item.id" class="content">
-				<UserProfile>
-					<template #username>
-						<RouterLink :to="`/user/${item.user}`">{{ item.user }}</RouterLink>
-					</template>
-					<template #time>Posted {{ item.time_ago }}, </template>
-				</UserProfile>
-				<div v-html="item.content"></div>
+			<div v-for="item in item.comments" :key="item.id" class="card">
+				<div class="card-body">
+					<UserProfile>
+						<template #username>
+							<RouterLink :to="`/user/${item.user}`">{{
+								item.user
+							}}</RouterLink>
+						</template>
+						<template #time>Posted {{ item.time_ago }}, </template>
+					</UserProfile>
+					<div v-html="item.content"></div>
+				</div>
 			</div>
 		</section>
-	</div>
+	</main>
 </template>
 
 <script lang="ts">
@@ -49,22 +53,16 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.user-container {
-	display: flex;
-	align-items: center;
-	padding: 0.5rem;
-	.bi {
-		font-size: 2.5rem;
-	}
-	.user-description {
-		padding-left: 8px;
-	}
-	.user-time {
-		font-size: 0.7rem;
+main {
+	h2 {
+		margin-bottom: 2%;
 	}
 	.content {
-		border: ridge;
-		padding: 0.5rem;
+		padding: 4%;
+	}
+	.card {
+		margin-bottom: 2%;
+		border-radius: 10px;
 	}
 }
 </style>

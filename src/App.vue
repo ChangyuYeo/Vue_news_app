@@ -1,23 +1,28 @@
 <template>
-	<ToolBar />
-	<RouterView v-slot="{ Component }">
-		<transition name="fade">
-			<component :is="Component" />
-		</transition>
-	</RouterView>
+	<Header />
+	<div class="container">
+		<RouterView v-slot="{ Component }">
+			<transition name="fade">
+				<component :is="Component" />
+			</transition>
+		</RouterView>
+	</div>
 	<Spinner v-if="loading" />
+	<Footer />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { mapState } from 'vuex'
-import ToolBar from '@/components/ToolBar.vue'
+import Header from '@/components/Header.vue'
 import Spinner from '@/components/Spinner.vue'
+import Footer from '@/components/Footer.vue'
 
 export default defineComponent({
 	components: {
-		ToolBar,
-		Spinner
+		Header,
+		Spinner,
+		Footer
 	},
 
 	computed: {
@@ -28,8 +33,8 @@ export default defineComponent({
 
 <style lang="scss">
 body {
-	font-family: 'Roboto', sans-serif;
 	color: $gray-800;
+	background-color: $gray-100;
 	// 라우터 트렌지션
 	.fade-enter-active,
 	.fade-leave-active {
